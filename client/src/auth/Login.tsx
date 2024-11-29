@@ -26,7 +26,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [errors,setErrors] = useState<Partial<LoginInputState>>({})
+  const [errors, setErrors] = useState<Partial<LoginInputState>>({});
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInput({ ...input, [name]: value });
@@ -99,6 +99,11 @@ const Login = () => {
               Login
             </Button>
           )}
+          <div className="mt-4">
+            <Link to="/forgot-password" className="hover:text-blue-500 hover:underline">
+              Forgot Password
+            </Link>
+          </div>
         </div>
         <Separator />
         <p className="mt-2">

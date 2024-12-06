@@ -1,6 +1,8 @@
-import Image from "@/assets/hero_pizza.png";
+// import Image from "@/assets/hero_pizza.png";
+import Food from "@/assets/food2.jpg"
 import { Badge } from "./ui/badge";
 import { Timer } from "lucide-react";
+import AvailableMenu from "./AvailableMenu";
 // @ will find direct show src root folder
 const RestaurantDetail = () => {
   return (
@@ -8,7 +10,7 @@ const RestaurantDetail = () => {
       <div className="w-full">
         <div className="relative w-full h-32 md:h-64 lg:h-72">
           <img
-            src={Image}
+            src={Food}
             alt="res_image"
             className="object-cover w-full h-full rounded-lg shadow-lg"
           />
@@ -34,6 +36,7 @@ const RestaurantDetail = () => {
             </div>
           </div>
         </div>
+        <AvailableMenu/>
       </div>
     </div>
   );

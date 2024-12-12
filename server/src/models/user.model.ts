@@ -19,6 +19,7 @@ export interface IUser {
 }
 
 export interface IUserDocument extends IUser, Document{
+  _id: any;
   createdAt:Date;
   updatedAt:Date;
 }

@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/connectDB.js";
-import userRoute from "./routes/user.route";
+import userRoute from "./routes/user.route.js";
+import restaurantRoute from "./routes/restaurant.route.js"
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -24,6 +25,7 @@ app.use(cors(corsOptions));
 
 //api
 app.use("/api/v1/user", userRoute);
+app.use("/api/v1/restaurant", restaurantRoute);
 //http://localhost:8000/api/v1/user/signup
 
 app.listen(PORT, () => {

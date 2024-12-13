@@ -9,6 +9,8 @@ dotenv.config();
 connectDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+//default middleware for any mernproject
 app.use(bodyParser.json({limit:'10mb'}));
 app.use(express.urlencoded({extended:true, limit:'10mb'}));
 app.use(express.json());

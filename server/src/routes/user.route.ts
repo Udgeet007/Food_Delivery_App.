@@ -1,6 +1,6 @@
 import express from "express";
-import { checkAuth, forgotPassword, login, logout, signup, updateProfile, verifyEmail,resetPassword } from "../controllers/user.controller";
-import { isAuthenticated } from "../middlewares/isAuthenticated";
+import { checkAuth, forgotPassword, login, logout, signup, updateProfile, verifyEmail,resetPassword } from "../controllers/user.controller.ts";
+import { isAuthenticated } from "../middlewares/isAuthenticated.ts";
 
 
 const router = express.Router();

@@ -3,6 +3,9 @@ import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import cloudinary from "../utils/cloudinary.js";
+import { generateVerificationCode } from "../utils/generteVerificationCode.js";
+import { generateToken } from "../utils/generateToken.js";
+import { sendPasswordResetEmail } from "../mailtrap/email.js";
 
 
 export const signup = async (req: Request, res: Response) => {
@@ -16,7 +19,7 @@ export const signup = async (req: Request, res: Response) => {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     // verification token
-    const verificationToken = "Mahadev"; //generateVerification();
+    const verificationToken =  generateVerificationCode();
     user = await User.create({
       fullname,
       email,
@@ -25,7 +28,7 @@ export const signup = async (req: Request, res: Response) => {
       verificationToken,
       verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,
     });
-    // generateToken(res,user);
+    generateToken(res,user);
     // await sendEmailVerificationEmail(email, verificationToken);
     const userWithoutPassword = await User.findOne({ email }).select(
       "-password"
@@ -58,7 +61,7 @@ export const login = async (req: Request, res: Response) => {
         message: "Incorrect email or password",
       });
     }
-    // generateToken(res,user)
+    generateToken(res,user)
     user.lastLogin = new Date();
     await user.save();
     //send user without password
@@ -139,7 +142,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     await user.save();
 
     //send email
-    // await sendPasswordResetEmail(user.email, `${process.env.FRONTEND_URL}/resetpassword/${token}`);
+    await sendPasswordResetEmail(user.email, `${process.env.FRONTEND_URL}/resetpassword/${resetToken}`);
     return res.status(200).json({
       success: true,
       message: "Password reset link sent to your email",
